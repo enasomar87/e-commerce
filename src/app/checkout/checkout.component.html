@@ -1,0 +1,19 @@
+<div class="my-5 py-5">
+    <h1>shipping address details:</h1>
+<form [formGroup]="checkoutForm" (ngSubmit)="proceedToCheckOut(checkoutForm)">
+
+    <label for="">details :</label>
+
+    <input formControlName="details" type="text" class="form-control">
+
+    <label for="">phone :</label>
+
+    <input formControlName="phone" type="number" class="form-control">
+
+    <label for="">city :</label>
+
+    <input formControlName="city" type="text" class="form-control">
+
+    <button class="btn bg-main text-light mt-2">online payment</button>
+</form>
+</div>

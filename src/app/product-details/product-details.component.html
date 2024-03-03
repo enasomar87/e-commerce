@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row ">
+        <div class="col-md-3">
+            <img [src]="SingleProduct.imageCover" class="w-100" alt="">
+        </div>
+    
+    
+        <div class="col-md-9 text-center  ">
+            <p class="fw-bold">{{SingleProduct.title}}</p>
+            <p>{{SingleProduct.description}}</p>
+           <div class="d-flex justify-content-between">
+            <p>{{SingleProduct.price}}EGP</p>
+            <p>{{SingleProduct.ratingsAverage}}
+            <i class="fa-solid fa-star rating-color"></i></p>
+           </div>
+           <button class="btn bg-main w-100">Add to cart +</button>
+        </div>
+    </div>
+</div>
+
+

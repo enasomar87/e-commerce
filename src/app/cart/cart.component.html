@@ -1,0 +1,110 @@
+
+	<div  class="cart-wrap mt-5 pt-5">
+		<div class="container">
+	        <div class="row">
+			    <div class="col-lg-8">
+			        <div class="main-heading">Shopping Cart</div>
+			        <div *ngIf="cartDetails.length>0 else loading" class="table-cart">
+	                    <table>
+	                        <thead>
+	                            <tr>
+	                                <th>Product</th>
+	                                <th>Quantity</th>
+	                                <th>Total</th>
+									<th>Delete</th>
+	                             
+	                            </tr>
+	                        </thead>
+	                        <tbody  >
+	                            <tr *ngFor="let p of cartDetails">
+	                                <td>
+	                                	<div class="display-flex align-center">
+		                                    <div class="img-product">
+		                                        <img [src]="p.product.imageCover" alt="" class="mCS_img_loaded">
+		                                    </div>
+		                                    <div class="name-product">
+		                                       
+		                                       {{p.product.title}}
+		                                    </div>
+		                                    <div class="price">
+		                                       {{p.price|currency:'EGP'}}
+		                                    </div>
+	                                    </div>
+	                                </td>
+	                                <td class="product-count">
+	                                    <form action="#" class="count-inlineflex">
+										    <div  (click)="updateProductQunty(p.count -1 , p.product._id)" class="qtyminus">-</div>
+										    <input type="text" name="quantity" [value]="p.count" class="qty">
+										    <div (click)="updateProductQunty(p.count +1 , p.product._id)" class="qtyplus">+</div>
+										</form>
+	                                </td>
+	                                <td>
+	                                    <div class="total">
+	                                        {{p.price * p.count|currency:'EGP'}}
+	                                    </div>
+	                                </td>
+	                                <td>
+	                                    <a (click)="removeItem(p.product._id)" title="">
+	                                     <i class="fa-solid fa-trash text-danger"></i>  </a>
+	                                </td>
+	                            </tr>
+	                           
+	                        </tbody>
+	                    </table>
+	                    <div class="coupon-box">
+	                        <form action="#" method="get" accept-charset="utf-8">
+	                            <div class="coupon-input">
+	                                <input type="text" name="coupon code" placeholder="Coupon Code">
+	                                <button type="submit" class="round-black-btn">Apply Coupon</button>
+	                            </div>
+	                        </form>
+	                    </div>
+			        </div>
+			        <!-- /.table-cart -->
+			    </div>
+			    <!-- /.col-lg-8 -->
+			    <div class="col-lg-4">
+			        <div class="cart-totals">
+			            <h3>Cart Totals</h3>
+			            <form action="#" method="get" accept-charset="utf-8">
+			                <table>
+			                    <tbody>
+			                        
+			                        <tr>
+			                            <td>Shipping</td>
+			                            <td class="free-shipping">Free Shipping</td>
+			                        </tr>
+			                        <tr class="total-row">
+			                            <td>Total</td>
+			                            <td class="price-total">
+											{{totalPrice|currency:'EGP'}}
+										</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+			                <div class="btn-cart-totals">
+			                    <a href="#" class="update round-black-btn" title="">Update Cart</a>
+			                    <a [routerLink]="['/checkout',cartId]" class="checkout round-black-btn" title="">Proceed to Checkout</a>
+			                </div>
+			                <!-- /.btn-cart-totals -->
+			            </form>
+			            <!-- /form -->
+			        </div>
+			        <!-- /.cart-totals -->
+			    </div>
+			    <!-- /.col-lg-4 -->
+			</div>
+		</div>
+	</div>
+
+	
+
+
+ 	
+<ng-template #loading >
+
+    <div class="d-flex justify-content-center align-items-center">
+        <i class="fa-solid fa-spinner fa-spin text-main fa-5x"></i>
+    </div>
+</ng-template> 
+	

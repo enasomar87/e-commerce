@@ -1,0 +1,50 @@
+<div class="w-50 mx-auto p-5">
+    <h1>Register now :</h1>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="signUp(registrationForm)">
+<label>Name :</label>
+<input formControlName="name" type="text" class="form-control">
+<p *ngIf="registrationForm.get('name')?.getError('required') && registrationForm.get('name')?.touched" class="text-danger">please fill out this field</p>
+<p *ngIf="registrationForm.get('name')?.getError('minlength')" class="text-danger">min length is 3</p>
+<p *ngIf="registrationForm.get('name')?.getError('maxlength')" class="text-danger">max length is 16</p>
+
+
+<label>Email :</label>
+<input formControlName="email" type="email" class="form-control">
+<p class="text-danger" *ngIf="registrationForm.get('email')?.getError('required') && registrationForm.get('email')?.touched">please fill out this field</p>
+<p class="text-danger" *ngIf="registrationForm.get('email')?.getError('email')">please write correct email</p>
+
+<label>Password :</label>
+<input formControlName="password" type="password" class="form-control">
+<p class="text-danger" *ngIf="registrationForm.get('password')?.getError('required') && registrationForm.get('password')?.touched">please fill out this field</p>
+<p class="text-danger" *ngIf="registrationForm.get('password')?.getError('pattern')">password must star with capital letter and between 5-16</p>
+
+
+<label>Repassword :</label>
+<input formControlName="rePassword" type="password" class="form-control">
+<p class="text-danger" *ngIf="registrationForm.get('rePassword')?.getError('required') && registrationForm.get('rePassword')?.touched">please fill out this field</p>
+<p class="text-danger" *ngIf="registrationForm.get('rePassword')?.getError('pattern') && registrationForm.get('rePassword')?.touched">password must star with capital letter and between 5-16</p>
+<p class="text-danger" *ngIf="registrationForm.get('rePassword')?.value !== registrationForm.get('password')?.value && registrationForm.get('rePassword')?.touched">repassword didn't match with password</p>
+
+
+<label>Phone :</label>
+<input formControlName="phone" type="number" class="form-control">
+<p class="text-danger" *ngIf="registrationForm.get('phone')?.getError('required') && registrationForm.get('phone')?.touched">please fill out this field</p>
+<p class="text-danger" *ngIf="registrationForm.get('phone')?.getError('pattern')">please write correct phone number</p>
+
+<button *ngIf="!loading else loader" class="btn bg-main">Register</button>
+<h2>{{apiResponse}}</h2>
+
+
+<ng-template #loader>
+    <button class="btn bg-main"> <i class="fa-solid fa-spinner"></i></button>
+   
+</ng-template>
+
+
+
+</form>
+</div>
+
+
+

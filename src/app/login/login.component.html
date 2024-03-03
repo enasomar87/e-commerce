@@ -1,0 +1,34 @@
+
+
+<div class="mt-5 bt-5">
+    
+<h1>login : </h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="logIn(loginForm)">
+    
+    <label>Email :</label>
+    <input formControlName="email" type="email" class="form-control">
+    <p class="text-danger" *ngIf="loginForm.get('email')?.getError('required') && loginForm.get('email')?.touched"></p>
+    <p class="text-danger" *ngIf="loginForm.get('email')?.getError('email')">please write correct email</p>
+    
+    <label>Password :</label>
+    <input formControlName="password" type="password" class="form-control">
+    <p class="text-danger" *ngIf="loginForm.get('password')?.getError('required') && loginForm.get('password')?.touched"></p>
+    <p class="text-danger" *ngIf="loginForm.get('password')?.getError('pattern')">password must star with capital letter and between 5-16</p>
+    
+    
+    
+    <button *ngIf="!loading else loader"  class="btn bg-main">login</button>
+    <!-- <h2>{{apiResponse}}</h2> -->
+    <p class="text-danger">{{apiresponse}}</p>
+    
+    <ng-template #loader>
+        <button class="btn bg-main"> <i class="fa-solid fa-spinner"></i></button>
+
+
+       
+    </ng-template>
+    
+    
+    </form>
+</div>
